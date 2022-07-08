@@ -45,54 +45,47 @@ class App(tk.Frame):
 
         # Titulos
         header = ttk.Label(self.parent, text="Paws Grooming and Haircuts")
-        header.place(x=255, y=15)
+        header.place(x=265, y=15)
         header.config(font=("Verdana", 20))
-
-        headerOpt = ttk.Label(self.parent, text="- Gestor Sección Perros -")
-        headerOpt.place(x=320, y=55)
-        headerOpt.config(font=("Verdana", 10))
-
 
         # buttons
     
-        self.button = ttk.Button(self.parent, text='Tabla Perros')
-        self.button['command'] = lambda: [self.showDogTable(),self.showInputs()]
+        self.button = ttk.Button(self.parent, width=14, text='Tabla Perros')
+        self.button['command'] = lambda: [self.showDogTable(),self.showInputDog()]
         self.button.pack()
         self.button.place(x=790, y=90)
 
-        self.button = ttk.Button(self.parent, text='Tabla Personal')
-        self.button['command'] = lambda: [self.showStaffTable(),self.showInputs()]
+        self.button = ttk.Button(self.parent, width=14,text='Tabla Personal')
+        self.button['command'] = lambda: [self.showStaffTable(),self.showInputStaff()]
         self.button.pack()
         self.button.place(x=790, y=120)
 
-        self.button = ttk.Button(self.parent, text='Inputs')
-        self.button['command'] = self.showInputs
+        self.button = ttk.Button(self.parent, width=14, text='Mostrar Datos')
+        self.button['command'] = self.showStaff
         self.button.pack()
         self.button.place(x=790, y=150)
 
-        self.button = ttk.Button(self.parent, text='Mostrar Datos')
-        self.button['command'] = self.showStaff
+        self.button = ttk.Button(self.parent, width=14, text='Filtar por salario')
+        self.button['command'] = self.filterSalary
         self.button.pack()
         self.button.place(x=790, y=180)
 
-        ###
-
-        self.button = ttk.Button(self.parent, text='Agregar')
+        self.button = ttk.Button(self.parent, width=14, text='Agregar')
         self.button['command'] = self.addStaff
         self.button.pack()
         self.button.place(x=790, y=240)
 
-        self.button = ttk.Button(self.parent, text='Limpiar')
+        self.button = ttk.Button(self.parent, width=14, text='Limpiar')
         self.button['command'] = self.clearSets
         self.button.pack()
         self.button.place(x=790, y=270)
 
-        self.button = ttk.Button(self.parent, text='Modificar')
+        self.button = ttk.Button(self.parent, width=14, text='Modificar')
         self.button['command'] = self.updateStaff
         self.button.pack()
         self.button.place(x=790, y=300)
 
-        self.button = ttk.Button(self.parent, text='Borrar')
+        self.button = ttk.Button(self.parent, width=14, text='Borrar')
         self.button['command'] = self.deleteStaff
         self.button.pack()
         self.button.place(x=790, y=330)
@@ -131,21 +124,21 @@ class App(tk.Frame):
         # labelName.place(x=20, y=455)
         # entryName = Entry(self.parent, width=25, textvariable=self.nombre)
         # entryName.place(x=90, y=455)
-        Comportamiento=ttk.Combobox(self.parent, values=["(null)", "Bien","Mal","Muy bien", "Muy mal"], state="readonly")
-        Comportamiento.place(x=570, y=540)
+        Comportamiento=ttk.Combobox(self.parent, values=["S/D", "Bien","Mal","Muy bien", "Muy mal"], state="readonly", width=13)
+        Comportamiento.place(x=648, y=515)
         Comportamiento.current(0)
 
         labelmiComportamiento=Label(self.parent, text="Comportamiento:")
-        labelmiComportamiento.place(x=445, y=540)
+        labelmiComportamiento.place(x=520, y=515)
         labelmiComportamiento.config(font=("David", 9))
 
 
-        self.button = ttk.Button(self.parent, text='Mostrar Datos')
+        self.button = ttk.Button(self.parent, width=14, text='Mostrar Datos')
         self.button['command'] = self.showDogs
         self.button.pack()
-        self.button.place(x=790, y=180)
+        self.button.place(x=790, y=150)
 
-        self.button = ttk.Button(self.parent, text='Agregar')
+        self.button = ttk.Button(self.parent, width=14, text='Agregar')
         self.button['command'] = self.addDog
         self.button.pack()
         self.button.place(x=790, y=240)
@@ -162,7 +155,7 @@ class App(tk.Frame):
     def showStaffTable(self):
 
         # Table for staff
-        self.showInputs
+        self.showInputStaff
         self.staffTitle = Label(self.parent, text="Lista de personal:")
         self.staffTitle.place(x=10, y=90)
         self.staffTitle.config(width=107, height=120)
@@ -201,12 +194,12 @@ class App(tk.Frame):
         self.puesto.set(0)
 
 
-        self.button = ttk.Button(self.parent, text='Mostrar Datos')
+        self.button = ttk.Button(self.parent, width=14, text='Mostrar Datos')
         self.button['command'] = self.showStaff
         self.button.pack()
-        self.button.place(x=790, y=180)
+        self.button.place(x=790, y=150)
 
-        self.button = ttk.Button(self.parent, text='Agregar')
+        self.button = ttk.Button(self.parent, width=14, text='Agregar')
         self.button['command'] = self.addStaff
         self.button.pack()
         self.button.place(x=790, y=240)
@@ -219,7 +212,7 @@ class App(tk.Frame):
         self.staffTree.bind("<Double-1>", self.selectOnClickStaff)
 
     
-    def showInputs(self):
+    def showInputStaff(self):
         labelNombre = Label(self.parent, text="Nombre:")
         labelNombre.config(font=("David", 9))
         labelNombre.place(x=20, y=455)
@@ -263,6 +256,43 @@ class App(tk.Frame):
         entrySueldo.place(x=595, y=485)
 
         labelDireccion = Label(self.parent, text="Dirección:")
+        labelDireccion.config(font=("David", 9))
+        labelDireccion.place(x=520, y=455)
+        entryDireccion = Entry(self.parent, width=25, textvariable=self.direccion)
+        entryDireccion.place(x=595, y=455)
+
+    def showInputDog(self):
+        labelNombre = Label(self.parent, text="Nombre:")
+        labelNombre.config(font=("David", 9))
+        labelNombre.place(x=20, y=455)
+        entryNombre = Entry(self.parent, width=25, textvariable=self.nombre)
+        entryNombre.place(x=90, y=455)
+
+        labelTelPers = Label(self.parent, text="Dueño:")
+        labelTelPers.config(font=("David", 9))
+        labelTelPers.place(x=20, y=485)
+        entryTelPers = Entry(self.parent, width=25, textvariable=self.telefono)
+        entryTelPers.place(x=90, y=485)
+
+        labelTelPers = Label(self.parent, text="Direccion:")
+        labelTelPers.config(font=("David", 9))
+        labelTelPers.place(x=260, y=455)
+        entryTelPers = Entry(self.parent, width=25, textvariable=self.telefono)
+        entryTelPers.place(x=350, y=455)
+
+        labelEmail = Label(self.parent, text="Telefono:")
+        labelEmail.config(font=("David", 9))
+        labelEmail.place(x=260, y=485)
+        entryEmail = Entry(self.parent, width=25, textvariable=self.email)
+        entryEmail.place(x=350, y=485)
+
+        labelSueldo = Label(self.parent, text="Baño:")
+        labelSueldo.config(font=("David", 9))
+        labelSueldo.place(x=520, y=485)
+        entrySueldo = Entry(self.parent, width=25, textvariable=self.sueldo)
+        entrySueldo.place(x=595, y=485)
+
+        labelDireccion = Label(self.parent, text="Corte:")
         labelDireccion.config(font=("David", 9))
         labelDireccion.place(x=520, y=455)
         entryDireccion = Entry(self.parent, width=25, textvariable=self.direccion)
@@ -357,7 +387,7 @@ class App(tk.Frame):
         self.dueño.set("")
         self.baño.set(False)
         self.corte.set(False)
-        self.comportamiento.set("(null)")
+        self.comportamiento.set("(vacio)")
 
     def filterSalary(self):
         registrosPers = self.staffTree.get_children()
