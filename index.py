@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import CENTER, Button, Entry, IntVar, Label, Radiobutton, StringVar, ttk
+from tkinter import CENTER, Button, Entry, IntVar, Label, PhotoImage, Radiobutton, StringVar, ttk
 from tkinter.messagebox import showinfo
 
 from setuptools import Command
@@ -11,6 +11,7 @@ class App(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
         self.init_interface()
+        # self.backgroundImage()
 
         self.ID = tk.StringVar()
         self.nombre = tk.StringVar()
@@ -28,12 +29,19 @@ class App(tk.Frame):
         self.años_experiencia = tk.StringVar()
         self.sueldo = tk.StringVar()
         self.puesto = IntVar() #Basically Links Any Radiobutton With The Variable=i.
-        
+
+
     def init_interface(self):
             
         # configure the root window
         self.parent.title('Paws Grooming and Haircuts')
         self.parent.geometry('900x850')
+
+        # bg = PhotoImage(self.parent, file = "background.png")
+  
+        # # Show image using label
+        # label1 = Label( self.parent, image = bg)
+        # label1.place(x = 0, y = 0)
 
         # Titulos
         header = ttk.Label(self.parent, text="Paws Grooming and Haircuts")
@@ -44,11 +52,6 @@ class App(tk.Frame):
         headerOpt.place(x=320, y=55)
         headerOpt.config(font=("Verdana", 10))
 
-        # label
-        self.label = ttk.Label(self.parent, text='Hello, Tkinter!')
-        self.label.pack()
-
-        # Tables
 
         # buttons
     
@@ -147,7 +150,12 @@ class App(tk.Frame):
         self.button.pack()
         self.button.place(x=790, y=240)
 
-        self.dogTree.bind("<Double-1>", self.selectOnClick)
+        self.button = ttk.Button(self.parent, text='Borrar')
+        self.button['command'] = self.deleteDog
+        self.button.pack()
+        self.button.place(x=790, y=330)
+
+        self.dogTree.bind("<Double-1>", self.selectOnClickDogs)
 
 
     
@@ -202,8 +210,13 @@ class App(tk.Frame):
         self.button['command'] = self.addStaff
         self.button.pack()
         self.button.place(x=790, y=240)
+    
+        self.button = ttk.Button(self.parent, text='Borrar')
+        self.button['command'] = self.deleteStaff
+        self.button.pack()
+        self.button.place(x=790, y=330)
 
-        self.staffTree.bind("<Double-1>", self.selectOnClick)
+        self.staffTree.bind("<Double-1>", self.selectOnClickStaff)
 
     
     def showInputs(self):
@@ -254,36 +267,6 @@ class App(tk.Frame):
         labelDireccion.place(x=520, y=455)
         entryDireccion = Entry(self.parent, width=25, textvariable=self.direccion)
         entryDireccion.place(x=595, y=455)
-
-    def crudOptions(self):
-
-        botonCargar = Button(self.parent, text="Cargar Personal", command=self.showStaff())
-        botonCargar.place(x=220, y=85)
-        botonCargar.config(font=("Verdana", 10), bg="#fff", fg="#000", padx=10, pady=2)
-
-        botonMostrarPorSueldo = Button(self.parent, text="Filtrar por sueldo", command="")
-        botonMostrarPorSueldo.place(x=420, y=85)
-        botonMostrarPorSueldo.config(font=("Verdana", 10), bg="#fff", fg="#000", padx=10, pady=2)
-
-        self.entryFilter = Entry(self.parent, width=15, textvariable="")
-        self.entryFilter.place(x=570, y=85, height=28)
-
-        botonBuscar = Button(self.parent, text="Agregar", command="")
-        botonBuscar.place(x=220, y=550)
-        botonBuscar.config(font=("Verdana", 10), bg="#fff", fg="#000", padx=10, pady=2)
-
-        self.botonLimpiar = Button(self.parent, text="Limpiar")
-        self.botonLimpiar['command'] = self.clearSets
-        self.botonLimpiar.place(x=313, y=550)
-        self.botonLimpiar.config(font=("Verdana", 10), bg="#fff", fg="#000", padx=10, pady=2)
-
-        botonModificar = Button(self.parent, text="Modificar", command="")
-        botonModificar.place(x=400, y=550)
-        botonModificar.config(font=("Verdana", 10), bg="#fff", fg="#000", padx=10, pady=2)
-
-        botonBorrar = Button(self.parent, text="Borrar", command="")
-        botonBorrar.place(x=500, y=550)
-        botonBorrar.config(font=("Verdana", 10), bg="#DF2935", fg="#fff", padx=10, pady=2)
 
 #============  # CRUD METHODS # ==============================================================
 
@@ -397,7 +380,7 @@ class App(tk.Frame):
         if valor=="yes":
             self.parent.destroy()
 
-    def selectOnClick(self, event):
+    def selectOnClickStaff(self, event):
         item = self.staffTree.identify('item', event.x, event.y)
 
         self.ID.set(self.staffTree.item(item, "text"))
@@ -409,6 +392,19 @@ class App(tk.Frame):
         self.email.set(self.staffTree.item(item, "values")[5])
         self.direccion.set(self.staffTree.item(item, "values")[6])
         self.sueldo.set(self.staffTree.item(item, "values")[7])
+
+    def selectOnClickDogs(self, event):
+        item = self.dogTree.identify('item', event.x, event.y)
+
+        self.ID.set(self.dogTree.item(item, "text"))
+        self.nombre.set(self.dogTree.item(item, "values")[0])
+        self.apellido.set(self.dogTree.item(item, "values")[1])
+        self.dni.set(self.dogTree.item(item, "values")[2])
+        self.telefono.set(self.dogTree.item(item, "values")[3])
+        self.años_experiencia.set(self.dogTree.item(item, "values")[4])
+        self.email.set(self.dogTree.item(item, "values")[5])
+        self.direccion.set(self.dogTree.item(item, "values")[6])
+        self.sueldo.set(self.dogTree.item(item, "values")[7])
 
     def showDogs(self):
         registros = self.dogTree.get_children()
@@ -455,11 +451,13 @@ class App(tk.Frame):
             messagebox.showerror("Error", "No se pudo modificar el registro")
 
     def deleteDog(self):
+
         try:
            if messagebox.askyesno(message="¿Realmente desea eliminar el perro: {}?".format(self.nombre.get()),
                                    title="ADVERTENCIA"):
                 self.newDog = Perro(self.nombre.get(), self.dueño.get(), self.direccion.get(), self.telefono.get())
-                self.newDog = self.deleteDog(self.ID.get())
+                ID_dog = self.ID.get()
+                self.newDog.borrarPerro(self.ID.get())
                 self.showDogs()
                 self.clearSets()
         except:
