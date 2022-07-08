@@ -1,0 +1,1 @@
+IntVar() #Basically Links Any Radiobutton With The Variable=i.
