@@ -271,31 +271,31 @@ class App(tk.Frame):
         labelTelPers = Label(self.parent, text="Dueño:")
         labelTelPers.config(font=("David", 9))
         labelTelPers.place(x=20, y=485)
-        entryTelPers = Entry(self.parent, width=25, textvariable=self.telefono)
+        entryTelPers = Entry(self.parent, width=25, textvariable=self.dueño)
         entryTelPers.place(x=90, y=485)
 
         labelTelPers = Label(self.parent, text="Direccion:")
         labelTelPers.config(font=("David", 9))
         labelTelPers.place(x=260, y=455)
-        entryTelPers = Entry(self.parent, width=25, textvariable=self.telefono)
+        entryTelPers = Entry(self.parent, width=25, textvariable=self.direccion)
         entryTelPers.place(x=350, y=455)
 
         labelEmail = Label(self.parent, text="Telefono:")
         labelEmail.config(font=("David", 9))
         labelEmail.place(x=260, y=485)
-        entryEmail = Entry(self.parent, width=25, textvariable=self.email)
+        entryEmail = Entry(self.parent, width=25, textvariable=self.telefono)
         entryEmail.place(x=350, y=485)
 
         labelSueldo = Label(self.parent, text="Baño:")
         labelSueldo.config(font=("David", 9))
         labelSueldo.place(x=520, y=485)
-        entrySueldo = Entry(self.parent, width=25, textvariable=self.sueldo)
+        entrySueldo = Entry(self.parent, width=25, textvariable=self.baño)
         entrySueldo.place(x=595, y=485)
 
         labelDireccion = Label(self.parent, text="Corte:")
         labelDireccion.config(font=("David", 9))
         labelDireccion.place(x=520, y=455)
-        entryDireccion = Entry(self.parent, width=25, textvariable=self.direccion)
+        entryDireccion = Entry(self.parent, width=25, textvariable=self.corte)
         entryDireccion.place(x=595, y=455)
 
 #============  # CRUD METHODS # ==============================================================
