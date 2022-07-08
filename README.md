@@ -1,6 +1,6 @@
 # Practica4-tkinter-app
 
-> Visual desktop app for managing a Dog's hair saloon and their staff <br />
+> Visual desktop app for managing a Dogs hair saloon and their staff <br />
 
 ## Table of Contents
 * [General Info](#general-information)
