@@ -11,7 +11,6 @@ class App(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
         self.init_interface()
-        # self.backgroundImage()
 
         self.ID = tk.StringVar()
         self.nombre = tk.StringVar()
@@ -37,16 +36,17 @@ class App(tk.Frame):
         self.parent.title('Paws Grooming and Haircuts')
         self.parent.geometry('900x850')
 
-        # bg = PhotoImage(self.parent, file = "background.png")
+        self.parent.bg = PhotoImage( file = "DB/background.png", width=900, height=850)
   
-        # # Show image using label
-        # label1 = Label( self.parent, image = bg)
-        # label1.place(x = 0, y = 0)
+        # Show image using label
+        label1 = Label( self.parent, image = self.parent.bg)
+        label1.place(x = 0, y = 0)
+        label1.config(width=0, height=0)
 
         # Titulos
         header = ttk.Label(self.parent, text="Paws Grooming and Haircuts")
         header.place(x=265, y=15)
-        header.config(font=("Verdana", 20))
+        header.config(font=("David", 20))
 
         # buttons
     
@@ -97,7 +97,7 @@ class App(tk.Frame):
 
         self.dogTitle = Label(self.parent, text="Lista de perros:")
         self.dogTitle.place(x=10, y=90)
-        self.dogTitle.config(width=107, height=120)
+        self.dogTitle.config(width=107, height=30)
 
         self.dogTree=ttk.Treeview(self.dogTitle, height=16, columns=('#0','#1','#2','#3','#4','#5','#6','#7',))
         self.dogTree.place(x=0, y=0)
@@ -158,7 +158,7 @@ class App(tk.Frame):
         self.showInputStaff
         self.staffTitle = Label(self.parent, text="Lista de personal:")
         self.staffTitle.place(x=10, y=90)
-        self.staffTitle.config(width=107, height=120)
+        self.staffTitle.config(width=107, height=30)
 
         self.staffTree = ttk.Treeview(self.staffTitle, height=16,
                                     columns=('#0', '#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8',))
