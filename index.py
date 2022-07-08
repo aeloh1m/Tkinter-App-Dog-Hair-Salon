@@ -120,7 +120,7 @@ class App(tk.Frame):
         self.dogTree.column('#6', width=80)
         self.dogTree.heading('#6', text="Corte", anchor=CENTER)
         self.dogTree.column('#7', width=110)
-        self.dogTree.heading('#7', text="self.comportamiento", anchor=CENTER)
+        self.dogTree.heading('#7', text="Comportamiento", anchor=CENTER)
 
 
         # labelName = Label(self.parent, text="Nombre:")
@@ -373,8 +373,8 @@ class App(tk.Frame):
         self.sueldo.set("")
         self.dueño.set("")
         self.baño.set(False)
-        self.baño_y_corte.set(False)
-        self.comportamiento.set("(vacio)")
+        self.corte.set(False)
+        self.comportamiento.set("(null)")
 
     def filterSalary(self):
         registrosPers = self.staffTree.get_children()
