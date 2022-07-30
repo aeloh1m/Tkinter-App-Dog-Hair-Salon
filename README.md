@@ -1,4 +1,4 @@
-# Tkinter-App
+# Dog Hair Salon
 
 > Visual desktop app for managing a Dogs hair saloon and their staff <br />
 
