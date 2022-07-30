@@ -1,4 +1,4 @@
-# Practica4-tkinter-app
+# Tkinter-App
 
 > Visual desktop app for managing a Dogs hair saloon and their staff <br />
 
